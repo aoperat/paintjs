@@ -4,6 +4,9 @@ const ctx = canvas.getContext('2d');
 //No7. 색변경 기능 추가
 const colors = document.getElementsByClassName("jsColor");
 
+//No8. 크기변경 기능 추가
+const range = document.getElementById("jsRange");
+
 
 
 //사이즈입력
@@ -13,6 +16,12 @@ canvas.height = 700;
 
 ctx.strokeStyle ="#2c2c2c"
 ctx.lineWidth = 2.5;
+
+//No8.
+// ctx.fillStyle ="green"; 
+// ctx.fillRect(50,20,100,49);
+// ctx.fillStyle ="purple"; 
+// ctx.fillRect(80,100,100,49);
 
 //그림을 그리는 상태값
 let painting = false;
@@ -58,4 +67,18 @@ function handleColorClick(event){
 
 }
 
-Array.from(colors).forEach(color => color.addEventListener("click", handleColorClick));
+function handleRangeChange(event){
+    size = event.target.value;
+    ctx.lineWidth = size;
+
+}
+
+
+Array.from(colors).forEach(color =>
+    color.addEventListener("click", handleColorClick)
+);
+
+if(range){
+    range.addEventListener("input", handleRangeChange)
+
+}
