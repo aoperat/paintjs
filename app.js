@@ -1,6 +1,11 @@
 const canvas = document.getElementById("jsCanvas");
 const ctx = canvas.getContext('2d');
 
+//No7. 색변경 기능 추가
+const colors = document.getElementsByClassName("jsColor");
+
+
+
 //사이즈입력
 canvas.width = 700;
 canvas.height = 700;
@@ -32,15 +37,10 @@ function onMouseMove(event){
         ctx.beginPath();
         ctx.moveTo(x,y);
     } else{
-        console.log(x,y)
         ctx.lineTo(x,y)
         ctx.stroke()
     }
 
-}
-
-function onMouseDown(event){
-    painting = true;
 }
 
 if(canvas){
@@ -49,3 +49,13 @@ if(canvas){
     canvas.addEventListener("mouseup",stopPainting);
     canvas.addEventListener("mouseleave", stopPainting);
 }
+
+function handleColorClick(event){
+    //console.log(event.target.style);
+
+    const color = event.target.style.backgroundColor;
+    ctx.strokeStyle = color;
+
+}
+
+Array.from(colors).forEach(color => color.addEventListener("click", handleColorClick));
